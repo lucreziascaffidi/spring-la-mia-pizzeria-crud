@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/fragments :: head}"></div>
+    <title>Pizzeria Crud</title>
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    </header>
+
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1 class="mt-4">
+                    Pizzas in our menu
+                </h1>
+
+                <table class="table mt-4" th:if="${pizzas.size()>0}">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Allergens</th>
+                            <th>Number of Orders</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr th:each="pizza : ${pizzas}" th:object="${pizza}">
+                            <td th:text="*{id}"></td>
+                            <td th:text="*{name}"></td>
+                            <td th:text="*{description}"></td>
+                            <td th:text="*{allergens}"></td>
+                            <td th:text="*{numberOfOrders}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 class="alert alert-warning" th:unless="${pizzas.size() > 0}">
+                    There are no pizzas avaiable at this moment... Try again later!
+                </h3>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <div th:replace="~{fragments/fragments :: scripts}"></div>
+
+</body>
+
+</html>

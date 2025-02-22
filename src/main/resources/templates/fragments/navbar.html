@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+
+</head>
+
+<body>
+    <nav th:fragment="navbar" class="navbar navbar-dark bg-dark" data-bs-theme="dark">
+        <div class="container container-fluid">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/img/pizza.png}" alt="Pizza" width="40" height="40"
+                    class="d-inline-block align-center me-2">
+                Pizzeria CRUD
+            </a>
+        </div>
+    </nav>
+</body>
+
+</html>
