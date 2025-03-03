@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="~{fragments/fragments :: head}"></div>
+    <title>Pizzeria Crud</title>
+</head>
+
+<body>
+    <header>
+        <nav th:replace="~{fragments/navbar :: navbar('Pizzas')}"></nav>
+    </header>
+
+    <main>
+        <section class="row">
+            <div class="col-12 d-flex justify-content-center" th:object="${pizza}">
+                <div class="card " style="width: 18rem;">
+                    <img th:src="@{/img/margherita.jpg}" class="card-img-top" alt="pizza">
+                    <div class="card-body">
+                        <h5 class="card-title">Pizza [[*{name}]]</h5>
+                        <p class="card-text">[[*{description}]]</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item ps-0"> Allergens: [[*{allergens}]] </li>
+                            <li class="list-group-item ps-0">Order's number: [[*{numberOfOrders}]] </li>
+                        </ul>
+                        <a th:href="@{/pizzas}" class="btn btn-dark">Go back to Pizzas</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div th:replace="~{fragments/fragments :: scripts}"></div>
+
+</body>
+
+</html>
