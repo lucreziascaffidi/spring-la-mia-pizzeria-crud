@@ -86,4 +86,15 @@ public class PizzaController {
         redirectAttributes.addFlashAttribute("messageClass", "alert-success");
         return "redirect:/pizzas";
     }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        Pizza pizza = repository.findById(id).get();
+
+        redirectAttributes.addFlashAttribute("message",
+                String.format("Pizza %s has been deleted successfully", pizza.getName()));
+        redirectAttributes.addFlashAttribute("messageClass", "alert-danger");
+
+        return "redirect:/pizzas";
+    }
 }
