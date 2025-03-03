@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -23,11 +24,12 @@ public class Pizza {
     @Lob
     private String description;
 
-    @NotBlank
+    @NotBlank(message = "Allergens must not be null or blank, and its lenght cannot be less than 1")
     private String allergens;
 
-    @NotNull
-    private Integer numberOfOrders;
+    @NotNull(message = "Orders cannot be null")
+    @Min(value = 0, message = "Number of orders cannot be a negative")
+    private Integer orders;
 
     // Getter e Setter
     public Integer getId() {
@@ -62,18 +64,18 @@ public class Pizza {
         this.allergens = allergens;
     }
 
-    public Integer getNumberOfOrders() {
-        return this.numberOfOrders;
+    public Integer getOrders() {
+        return this.orders;
     }
 
-    public void setNumberOfOrders(Integer numberOfOrders) {
-        this.numberOfOrders = numberOfOrders;
+    public void setOrders(Integer orders) {
+        this.orders = orders;
     }
 
     @Override
     public String toString() {
         return String.format("Pizza: %s, Description: %s, Allergens: %s, Number of Orders: %d",
-                this.name, this.description, this.allergens, this.numberOfOrders);
+                this.name, this.description, this.allergens, this.orders);
     }
 
 }
