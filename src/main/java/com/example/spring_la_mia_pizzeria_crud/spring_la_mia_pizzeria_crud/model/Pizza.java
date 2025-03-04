@@ -1,12 +1,17 @@
 package com.example.spring_la_mia_pizzeria_crud.spring_la_mia_pizzeria_crud.model;
 
+import java.math.BigDecimal;
+
+import org.springframework.format.annotation.NumberFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -27,9 +32,15 @@ public class Pizza {
     @NotBlank(message = "Allergens must not be null or blank, and its lenght cannot be less than 1")
     private String allergens;
 
-    @NotNull(message = "Orders cannot be null")
-    @Min(value = 0, message = "Number of orders cannot be a negative")
-    private Integer orders;
+    @NotNull(message = "Price is required")
+    @DecimalMin(value = "0", inclusive = true, message = "Price must be at least 0.00")
+    @Digits(integer = 6, fraction = 2, message = "Price must have at most 6 integer digits and 2 decimal places")
+    @NumberFormat(pattern = "#,##0.00")
+    private BigDecimal price;
+
+    // @NotNull(message = "Orders cannot be null")
+    // @Min(value = 0, message = "Number of orders cannot be a negative")
+    // private Integer orders;
 
     // Getter e Setter
     public Integer getId() {
@@ -64,18 +75,26 @@ public class Pizza {
         this.allergens = allergens;
     }
 
-    public Integer getOrders() {
-        return this.orders;
+    public BigDecimal getPrice() {
+        return this.price;
     }
 
-    public void setOrders(Integer orders) {
-        this.orders = orders;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
+
+    // public Integer getOrders() {
+    // return this.orders;
+    // }
+
+    // public void setOrders(Integer orders) {
+    // this.orders = orders;
+    // }
 
     @Override
     public String toString() {
-        return String.format("Pizza: %s, Description: %s, Allergens: %s, Number of Orders: %d",
-                this.name, this.description, this.allergens, this.orders);
+        return String.format("Pizza: %s, Description: %s, Allergens: %s, Price: %2f€",
+                this.name, this.description, this.allergens, this.price);
     }
 
 }

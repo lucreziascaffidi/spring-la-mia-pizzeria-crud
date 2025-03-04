@@ -38,7 +38,7 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Allergens</th>
-                            <th>Orders</th>
+                            <th>Price</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -51,7 +51,8 @@
                             <td th:text="*{name}" class="align-middle"></td>
                             <td th:text="*{description}" class="align-middle"></td>
                             <td th:text="*{allergens}" class="align-middle"></td>
-                            <td th:text="*{orders}" class="align-middle"></td>
+                            <td th:utext="'&euro; ' + ${#numbers.formatDecimal(pizza.price, 1, 2, 'POINT')}"></td>
+
                             <td class="align-middle">
                                 <a th:href="@{/pizzas/{id}(id=*{id})}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black"

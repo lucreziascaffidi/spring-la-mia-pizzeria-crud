@@ -60,7 +60,7 @@ public class PizzaController {
         repository.save(formPizza);
 
         redirectAttributes.addFlashAttribute("message",
-                String.format("Pizza %s has been created", formPizza.getName()));
+                String.format("Pizza %s has been createdwith price €%.2f", formPizza.getName(), formPizza.getPrice()));
         redirectAttributes.addFlashAttribute("messageClass", "alert-success");
         return "redirect:/pizzas";
     }

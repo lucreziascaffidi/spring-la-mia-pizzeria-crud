@@ -59,13 +59,12 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="orders" class="form-label">Number of orders:</label>
-                        <input class="form-control" type="text" id="orders" th:field="*{orders}"
+                        <label for="price" class="form-label">Price (€):</label>
+                        <input class="form-control" type="number" id="price" th:field="*{price}" step="0.00" min="0.00"
                             th:errorClass="is-invalid">
-
-                        <div th:if="${#fields.hasErrors('orders')}" class="invalid-feedback">
+                        <div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
                             <ul>
-                                <li th:each="error : ${#fields.errors('orders')}" th:text="${error}"></li>
+                                <li th:each="error : ${#fields.errors('price')}" th:text="${error}"></li>
                             </ul>
                         </div>
                     </div>
